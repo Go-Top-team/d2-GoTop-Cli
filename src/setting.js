@@ -17,7 +17,7 @@ const setting = {
   page: {
     opened: [
       {
-        name: 'index',
+        name: '/index',
         meta: {
           title: '首页',
           requiresAuth: false
@@ -28,7 +28,6 @@ const setting = {
   // 版本
   releases: {
     version: version
-    // api: 'https://api.github.com/repos/FairyEver/d2-admin/releases/latest'
   },
   // 菜单搜索
   search: {
@@ -40,24 +39,12 @@ const setting = {
       {
         title: '经典',
         name: 'd2',
-        preview: 'https://media.dkbang8.com/website/theme/d2/1553940800610preview@2x.png'
-      },
-      // {
-      //   title: '简约线条',
-      //   name: 'line',
-      //   backgroundImage: 'https://media.dkbang8.com/website/theme/line/1553941595156bg.jpg',
-      //   preview: 'https://media.dkbang8.com/website/theme/line/1553941614801preview@2x.png'
-      // },
-      {
-        title: '流星',
-        name: 'star',
-        backgroundImage: 'https://media.dkbang8.com/website/theme/star/1553941694085bg.jpg',
-        preview: 'https://media.dkbang8.com/website/theme/star/website/theme/star/1553941694085bg.jpg'
+        preview: 'https://media.leadnexus.net/D2_Cli/Classic%402x.png'
       },
       {
-        title: 'Tomorrow Night Blue (vsCode)',
-        name: 'tomorrow-night-blue',
-        preview: 'https://media.dkbang8.com/website/theme/tomorrow-night-blue/1553941787103preview@2x.png'
+        title: '暗黑模式',
+        name: 'dark',
+        preview: 'https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D600%2C800/sign=c8be8487aed3fd1f365caa3c007e0927/b3b7d0a20cf431ad81da54904d36acaf2edd980a.jpg'
       }
     ]
   },

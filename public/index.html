@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!-- <link rel="icon" href="<%= BASE_URL %>ico2.ico"> -->
-    <link rel="icon" href="https://media.dkbang8.com/website/system/1553939188268ico2.ico">
+    <link rel="icon" href="<%= BASE_URL %>windows.ico">
+    <!-- <link rel="icon" href="https://media.xxx.com/website/system/1553939188268ico2.ico"> -->
     <!-- 使用CDN加速的CSS文件，配置在vue.config.js下 -->
     <% for (var i in htmlWebpackPlugin.options.cdn&&htmlWebpackPlugin.options.cdn.css) { %>
     <link href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" rel="preload" as="style">
@@ -44,9 +44,13 @@
     <div id="app">
       <div class="d2-home">
         <div class="d2-home__main">
-          <img
+            <!-- <img
             class="d2-home_loading"
-            src="https://media.dkbang8.com/website/system/1553939042749loading-spin.svg"
+            src="https://github.githubassets.com/images/spinners/octocat-spinner-128.gif"
+            alt="loading"> -->
+            <img
+            class="d2-home_loading"
+            src="./loading.svg"
             alt="loading">
           <div class="d2-home__title">
             正在加载资源

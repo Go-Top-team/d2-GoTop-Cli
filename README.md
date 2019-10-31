@@ -7,11 +7,6 @@ D2Admin-Start-Kit Electron version
 npm install
 ```
 
-## 1.2 Vue Cli3 Electron 插件
-```
-  vue add electron-builder
-```
-
 ## 1.3 网页端开发调试
 ```
   npm run dev
@@ -22,14 +17,14 @@ npm install
   npm run build
 ```
 
-## 1.5 Windows桌面端开发调试
+## 1.5 桌面端开发调试
 ```
-  npm run serve:electron
+  npm run electron:serve
 ```
 
-## 1.6 Windows桌面端构建打包
+## 1.6 桌面端构建打包
 ```
-  npm run build:electron
+  npm run electron:build
 ```
 
 # 2.注意事项：
@@ -38,3 +33,13 @@ npm install
 打包网页端时，Vue.config.js文件中UglifyJsPlugin的引入与非开发环境设置代码需取消注释，
 并在package包中的devDependencies设置里添加 "uglifyjs-webpack-plugin": "^2.0.1"
 ```
+
+# 3.生成图标
+## 2.1生成icons图标
+```
+  npm run icon
+```
+会在根目录生成一个icons-build文件夹，里面含有各种类型的图标
+
+## 2.2注意事项
+public目录中必须有你要生成的图标的all.png原始图片

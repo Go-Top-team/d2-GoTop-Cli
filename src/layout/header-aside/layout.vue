@@ -30,7 +30,7 @@
           <d2-header-search @click="handleSearchClick"/>
           <d2-header-error-log/>
           <d2-header-fullscreen/>
-          <!-- <d2-header-theme/> -->
+          <d2-header-theme/>
           <!-- <d2-header-size/> -->
           <d2-header-user/>
         </div>
@@ -88,7 +88,7 @@ import d2Tabs from './components/tabs'
 import d2HeaderFullscreen from './components/header-fullscreen'
 import d2HeaderSearch from './components/header-search'
 // import d2HeaderSize from './components/header-size'
-// import d2HeaderTheme from './components/header-theme'
+import d2HeaderTheme from './components/header-theme'
 import d2HeaderUser from './components/header-user'
 import d2HeaderErrorLog from './components/header-error-log'
 import { mapState, mapGetters, mapActions } from 'vuex'
@@ -105,14 +105,14 @@ export default {
     d2HeaderFullscreen,
     d2HeaderSearch,
     // d2HeaderSize,
-    // d2HeaderTheme,
+    d2HeaderTheme,
     d2HeaderUser,
     d2HeaderErrorLog
   },
   data () {
     return {
       // [侧边栏宽度] 正常状态
-      asideWidth: '200px',
+      asideWidth: '150px',
       // [侧边栏宽度] 折叠状态
       asideWidthCollapse: '65px'
     }
