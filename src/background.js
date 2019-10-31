@@ -1,4 +1,4 @@
-import { app, protocol, BrowserWindow, globalShortcut } from 'electron'
+import { app, protocol, BrowserWindow, globalShortcut, dialog, Menu } from 'electron'
 import * as path from 'path'
 import { format as formatUrl } from 'url'
 import { createProtocol, installVueDevtools } from 'vue-cli-plugin-electron-builder/lib'
@@ -19,7 +19,7 @@ function createWindow () {
   win = new BrowserWindow({
     width: 1000,
     height: 600,
-    // 设置无边框
+    // 设置无边框，true为有边框，false为无边框
     frame: true,
     // 设置ICON
     icon: path.join(__dirname, 'windows.ico'),
@@ -80,28 +80,11 @@ app.on('ready', async () => {
     }
   }
 
-  // 控制台快捷键
-  globalShortcut.register('Ctrl+F12', () => {
-    if (dev === 0) {
-      win.webContents.openDevTools()
-      dev = 1
-    } else if (dev === 1) {
-      win.webContents.closeDevTools()
-      dev = 0
-    }
-  })
-  // 退出快捷键
-  globalShortcut.register('Command+Q', () => {
-    app.quit()
-  })
+  MenuTable()
 
-  // 全屏快捷键
-  globalShortcut.register('F11', () => {
-    if (win.isMaximized() === true) {
-      win.unmaximize()
-    } else {
-      win.maximize()
-    }
+  // 打开窗口
+  globalShortcut.register('CmdorCtrl+X', () => {
+    win.show()
   })
 
   // 隐藏窗口
@@ -129,4 +112,114 @@ if (isDevelopment) {
       app.quit()
     })
   }
+}
+
+function isQuit () {
+  dialog.showMessageBox({
+    type: 'info',
+    title: '是否退出？',
+    message: '是否退出程序？',
+    buttons: ['是', '否'],
+    cancelId: 2 // 点击关闭dialog
+  }, function (index) {
+    if (index === 0) {
+      app.quit()
+    }
+  })
+}
+
+function FullScreen () {
+  let win2 = win
+  if (win2.isMaximized() === true) {
+    win2.unmaximize()
+  } else {
+    win2.maximize()
+  }
+}
+
+function mini () {
+  let win3 = win
+  win3.minimize()
+}
+
+function MenuTable () {
+  const template = [
+    {
+      label: '帮助',
+      role: 'help',
+      submenu: [
+        {
+          label: '关于我们',
+          click () { aboutMe() }
+        }
+      ]
+    },
+    {
+      label: '菜单',
+      submenu: [{
+        label: '全屏或初始化',
+        accelerator: 'CmdOrCtrl+F11',
+        click: function () {
+          FullScreen()
+        }
+      },
+      {
+        label: '初始窗口',
+        accelerator: 'CmdOrCtrl+F11',
+        click: function () {
+          FullScreen()
+        }
+      },
+      {
+        label: '最小化',
+        accelerator: 'CmdOrCtrl + W',
+        click: function () {
+          mini()
+        }
+      },
+      {
+        label: '退出程序',
+        accelerator: 'CmdOrCtrl + Q',
+        click: function () {
+          isQuit()
+        }
+      },
+      {
+        label: '开发工具',
+        accelerator: 'CmdOrCtrl + F12',
+        click: function () {
+          if (dev === 0) {
+            win.webContents.openDevTools()
+            dev = 1
+          } else if (dev === 1) {
+            win.webContents.closeDevTools()
+            dev = 0
+          }
+        }
+      }]
+    },
+    {
+      label: '帮助',
+      role: 'help',
+      submenu: [
+        {
+          label: '找到我',
+          click () { require('electron').shell.openExternal('https://github.com/Go-Top-team/') }
+        }
+      ]
+    }
+  ]
+
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
+}
+
+function aboutMe () {
+  dialog.showMessageBox({
+    type: 'info',
+    title: '关于我们',
+    message: '联系电话:1XXXXXXXX',
+    buttons: ['好的'],
+    cancelId: 1 // 点击关闭dialog
+  })
 }
