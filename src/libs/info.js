@@ -38,8 +38,8 @@ export function encrypt (key, iv, word) {
 }
 
 export function ToEncrypy (word) {
-  const Key = CryptoJS.enc.Base64.parse('AbCDeFg!@1#2$3%4')
-  const Iv = CryptoJS.enc.Base64.parse('AbCDeFg!@1#2$3%4')
+  const Key = CryptoJS.enc.Base64.parse('1A2b3C4d5E6fG!@#$')
+  const Iv = CryptoJS.enc.Base64.parse('1A2b3C4d5E6fG!@#$')
 
   let srcs = CryptoJS.enc.Utf8.parse(word)
   let encrypted = CryptoJS.AES.encrypt(srcs, Key, {
@@ -50,8 +50,8 @@ export function ToEncrypy (word) {
 }
 
 export function ToDecrypt (word) {
-  const Key = CryptoJS.enc.Base64.parse('AbCDeFg!@1#2$3%4')
-  const Iv = CryptoJS.enc.Base64.parse('AbCDeFg!@1#2$3%4')
+  const Key = CryptoJS.enc.Base64.parse('1A2b3C4d5E6fG!@#$')
+  const Iv = CryptoJS.enc.Base64.parse('1A2b3C4d5E6fG!@#$')
   let decrypted = CryptoJS.AES.decrypt(word, Key, {
     iv: Iv,
     mode: CryptoJS.mode.CBC,

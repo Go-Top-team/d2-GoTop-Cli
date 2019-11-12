@@ -13,9 +13,12 @@ import router from './router'
 import menuHeader from '@/menu/header'
 import menuAside from '@/menu/aside'
 import { frameInRoutes } from '@/router/routes'
+// 全局变量组件
+import tools from '@/global/tools'
 
 // 核心插件
 Vue.use(d2Admin)
+Vue.use(tools)
 
 new Vue({
   router,

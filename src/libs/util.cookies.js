@@ -3,7 +3,7 @@ import setting from '@/setting.js'
 import WebStorageCache from 'web-storage-cache'
 
 const cookies = {}
-const runElectron = process.env.VUE_APP_IS_ELECTRON
+const runElectron = process.env.IS_ELECTRON
 
 let wsCache
 const defExp = 24 * 60 * 60

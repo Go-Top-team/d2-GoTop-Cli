@@ -8,8 +8,8 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
-// 判断是否调用开发工具
-let dev = 0
+// 调试窗口
+let dev = 1
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: true, standard: true } }])
@@ -17,17 +17,18 @@ protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: tru
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 1000,
-    height: 600,
+    width: 1100,
+    height: 700,
     // 设置无边框，true为有边框，false为无边框
     frame: true,
     // 设置ICON
     icon: path.join(__dirname, 'windows.ico'),
     webPreferences: {
       nodeIntegration: true
-    } })
+    }
+  })
   // 去除Windows菜单栏
-  win.setMenu(null)
+  // win.setMenu(null)
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
@@ -83,7 +84,7 @@ app.on('ready', async () => {
   MenuTable()
 
   // 打开窗口
-  globalShortcut.register('CmdorCtrl+X', () => {
+  globalShortcut.register('CmdorCtrl+E', () => {
     win.show()
   })
 
@@ -185,28 +186,35 @@ function MenuTable () {
         }
       },
       {
-        label: '开发工具',
-        accelerator: 'CmdOrCtrl + F12',
+        label: '刷新页面',
+        accelerator: 'CmdOrCtrl + F5',
         click: function () {
-          if (dev === 0) {
-            win.webContents.openDevTools()
-            dev = 1
-          } else if (dev === 1) {
-            win.webContents.closeDevTools()
-            dev = 0
+          createWindow()
+        }
+      },
+      {
+        label: '开发工具',
+        accelerator: 'CmdOrCtrl + shift + T',
+        click: function () {
+          if (isDevelopment) {
+            if (dev === 0) {
+              win.webContents.openDevTools()
+              dev = 1
+            } else {
+              win.webContents.closeDevTools()
+              dev = 0
+            }
+          } else if (!isDevelopment) {
+            dialog.showMessageBox({
+              type: 'info',
+              title: '提示',
+              message: '此模式下不允许打开开发工具',
+              buttons: ['好的'],
+              cancelId: 1 // 点击关闭dialog
+            })
           }
         }
       }]
-    },
-    {
-      label: '帮助',
-      role: 'help',
-      submenu: [
-        {
-          label: '找到我',
-          click () { require('electron').shell.openExternal('https://github.com/Go-Top-team/') }
-        }
-      ]
     }
   ]
 
